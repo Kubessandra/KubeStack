@@ -1,4 +1,5 @@
 # Logs
+.turbo
 logs
 *.log
 npm-debug.log*
@@ -102,3 +103,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+build/**
+dist/**
+.next/**

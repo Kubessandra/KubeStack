@@ -1,0 +1,28 @@
+{
+  "name": "socialgenerator",
+  "version": "1.0.0",
+  "description": "generate social videos ",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "pnpm": "^7.19.0"
+  },
+  "devDependencies": {
+    "turbo": "^1.6.3"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "dev": "turbo run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kubessandra/SocialGenerator.git"
+  },
+  "author": "kubessandra",
+  "bugs": {
+    "url": "https://github.com/Kubessandra/SocialGenerator/issues"
+  },
+  "homepage": "https://github.com/Kubessandra/SocialGenerator#readme"
+}
