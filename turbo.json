@@ -21,6 +21,9 @@
       "dependsOn": ["build", "test", "lint"],
       "outputs": []
     },
+    "lint-fix": {
+      "outputs": []
+    },
     "db:generate": {
       "cache": false
     },

@@ -14,6 +14,7 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
+    "lint-fix": "turbo run lint-fix",
     "dev": "turbo run dev"
   },
   "repository": {

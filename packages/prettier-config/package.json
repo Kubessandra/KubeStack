@@ -1,0 +1,8 @@
+{
+  "name": "@kubessandra/prettier-config",
+  "main": "index.js",
+  "devDependencies": {
+    "prettier": "^2.8.1",
+    "prettier-plugin-tailwindcss": "^0.2.1"
+  }
+}
