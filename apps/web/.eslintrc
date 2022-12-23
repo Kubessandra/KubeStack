@@ -1,10 +1,13 @@
 {
-  "extends": [
-    "@kubessandra/eslint-config-custom"
-  ],
-  "parserOptions": {
-    "project": "tsconfig.json",
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  }
+  "extends": ["@kubessandra/eslint-config-custom"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": "tsconfig.json",
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+      }
+    }
+  ]
 }
