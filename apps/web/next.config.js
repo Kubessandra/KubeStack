@@ -25,5 +25,6 @@ module.exports = getConfig({
    */
   publicRuntimeConfig: {
     NODE_ENV: env.NODE_ENV,
+    ORY_SDK_URL: env.ORY_SDK_URL,
   },
 });

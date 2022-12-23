@@ -2,11 +2,28 @@ import { trpc } from "../utils/trpc";
 import { NextPageWithLayout } from "./_app";
 import { inferProcedureInput } from "@trpc/server";
 import Link from "next/link";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import type { AppRouter } from "~/server/routers/_app";
 
+import { Configuration, FrontendApi, Session, Identity } from "@ory/client";
+import { edgeConfig } from "@ory/integrations/next";
+import { useRouter } from "next/router";
+
+const ory = new FrontendApi(new Configuration(edgeConfig));
+
+// Returns either the email or the username depending on the user's Identity Schema
+const getUserName = (identity: Identity) =>
+  identity.traits.email || identity.traits.username;
+
 const IndexPage: NextPageWithLayout = () => {
+  const router = useRouter();
   const utils = trpc.useContext();
+  const addPost = trpc.post.add.useMutation({
+    async onSuccess() {
+      // refetches posts after a post is added
+      await utils.post.list.invalidate();
+    },
+  });
   const postsQuery = trpc.post.list.useInfiniteQuery(
     {
       limit: 5,
@@ -18,12 +35,33 @@ const IndexPage: NextPageWithLayout = () => {
     }
   );
 
-  const addPost = trpc.post.add.useMutation({
-    async onSuccess() {
-      // refetches posts after a post is added
-      await utils.post.list.invalidate();
-    },
-  });
+  // ORY
+  const [session, setSession] = useState<Session | undefined>();
+  const [logoutUrl, setLogoutUrl] = useState<string | undefined>();
+
+  useEffect(() => {
+    ory
+      .toSession()
+      .then(({ data }) => {
+        // User has a session!
+        setSession(data);
+        // Create a logout url
+        ory.createBrowserLogoutFlow().then(({ data }) => {
+          setLogoutUrl(data.logout_url);
+        });
+      })
+      .catch(() => {
+        // Redirect to login page
+        return router.push(edgeConfig.basePath + "/ui/login");
+      });
+  }, [router]);
+
+  if (!session) {
+    // Still loading
+    return null;
+  }
+
+  // end ORY
 
   return (
     <>
@@ -37,6 +75,9 @@ const IndexPage: NextPageWithLayout = () => {
         </a>
         .
       </p>
+      <h2 className="text-bold text-3xl text-blue-800">
+        {getUserName(session?.identity)}
+      </h2>
 
       <h2>
         Latest Posts
@@ -116,6 +157,7 @@ const IndexPage: NextPageWithLayout = () => {
           <p style={{ color: "red" }}>{addPost.error.message}</p>
         )}
       </form>
+      <a href={logoutUrl}>Log out</a>
     </>
   );
 };
