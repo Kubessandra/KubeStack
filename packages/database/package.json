@@ -2,8 +2,7 @@
   "name": "@kubessandra/database",
   "scripts": {
     "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:push": "prisma db push --skip-generate"
+    "db:migrate": "prisma migrate dev"
   },
   "devDependencies": {
     "prisma": "^4.8.0"

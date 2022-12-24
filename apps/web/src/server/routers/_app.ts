@@ -3,10 +3,11 @@
  */
 import { publicProcedure, router } from "../trpc";
 import { postRouter } from "./post";
+import { paymentRouter } from "./payment";
 
 export const appRouter = router({
   healthcheck: publicProcedure.query(() => "yay!"),
-
+  payment: paymentRouter,
   post: postRouter,
 });
 

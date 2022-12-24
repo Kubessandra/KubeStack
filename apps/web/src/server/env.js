@@ -8,8 +8,8 @@ const { z } = require("zod");
 
 /*eslint sort-keys: "error"*/
 const envSchema = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]),
   NEXT_ORY_SDK_URL: z.string(),
+  NODE_ENV: z.enum(["development", "test", "production"]),
 });
 
 const env = envSchema.safeParse(process.env);

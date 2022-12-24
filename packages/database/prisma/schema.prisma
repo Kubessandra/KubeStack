@@ -18,3 +18,12 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
+
+model PaymentInfos {
+  id          String @id @default(uuid())
+  customerId  String @unique
+  userId      String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
