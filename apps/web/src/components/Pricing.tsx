@@ -1,6 +1,7 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import auth from "~/utils/auth";
+import { STARTER_PRICE_ID } from "~/utils/constants";
 import { trpc } from "~/utils/trpc";
 
 const tiers = [
@@ -8,7 +9,7 @@ const tiers = [
     id: "tier-free",
     name: "Free",
     href: auth.signupURL,
-    priceID: "price_1MIMMLINRf8NBPelTplYpSeS",
+    priceID: STARTER_PRICE_ID,
     priceMonthly: 0,
     description:
       "Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.",
@@ -23,7 +24,7 @@ const tiers = [
     id: "tier-starter",
     name: "Starter",
     href: auth.signupURL,
-    priceID: "price_1MIMMLINRf8NBPelTplYpSeS",
+    priceID: STARTER_PRICE_ID,
     priceMonthly: 25,
     description:
       "Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.",
