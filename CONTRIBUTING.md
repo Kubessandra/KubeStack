@@ -53,9 +53,9 @@ If a pull request is not ready to be reviewed yet
 
 ```bash
 # First you clone the original repository
-git clone git@github.com:kubessandra/SocialGenerator.git
+git clone git@github.com:kubessandra/KubeStack.git
 # Next you add a git remote that is your fork:
-git remote add fork git@github.com:<YOUR-GITHUB-USERNAME-HERE>/SocialGenerator.git
+git remote add fork git@github.com:<YOUR-GITHUB-USERNAME-HERE>/KubeStack.git
 # Next you fetch the latest changes from origin for master:
 git fetch origin
 git checkout main
