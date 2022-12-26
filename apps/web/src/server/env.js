@@ -6,10 +6,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { z } = require("zod");
 
-/*eslint sort-keys: "error"*/
+/**
+ * Public and private env are handled by the next.config.js
+ */
+
 const envSchema = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]),
   NEXT_ORY_SDK_URL: z.string(),
+  STRIPE_SECRET: z.string(),
+  STRIPE_WEBHOOK_SECRET: z.string(),
+  FRONT_URL: z.string(),
+  NODE_ENV: z.enum(["development", "test", "production"]),
 });
 
 const env = envSchema.safeParse(process.env);
