@@ -2,20 +2,24 @@
  *
  * This is an example router, you can delete this file and then update `../pages/api/trpc/[trpc].tsx`
  */
-import { router, publicProcedure } from "../trpc";
+import { router } from "../trpc";
 import { TRPCError } from "@trpc/server";
-import { z } from "zod";
-
 import Stripe from "stripe";
-if (!process.env.STRIPE_SECRET) throw new Error("NO STRIPE_SECRET ENV");
-const stripe = new Stripe(process.env.STRIPE_SECRET, {
+import { z } from "zod";
+import { env } from "~/server/env";
+
+import { SUCCESS_URL } from "~/utils/constants";
+import { authProcedure } from "../auth/middleware";
+
+const stripe = new Stripe(env.STRIPE_SECRET, {
   apiVersion: "2022-11-15",
 });
-if (!process.env.FRONT_URL) throw new Error("NO FRONT_URL ENV");
-const FRONT_URL = process.env.FRONT_URL;
 
 export const paymentRouter = router({
-  createSession: publicProcedure
+  test: authProcedure.query(async () => {
+    return "lol";
+  }),
+  createSession: authProcedure
     .input(
       z.object({
         priceID: z.string().max(250),
@@ -31,8 +35,8 @@ export const paymentRouter = router({
           },
         ],
         mode: "subscription",
-        success_url: `${FRONT_URL}/videos?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${FRONT_URL}/videos`,
+        success_url: `${env.FRONT_URL}/${SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${env.FRONT_URL}/videos`,
       });
 
       if (!session.url) {

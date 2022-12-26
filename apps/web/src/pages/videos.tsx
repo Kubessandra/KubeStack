@@ -4,9 +4,11 @@ import Layout from "~/components/Layout";
 import Pricing from "~/components/Pricing";
 import { useSession } from "~/hooks/useSession";
 import auth from "~/utils/auth";
+import { trpc } from "~/utils/trpc";
 
 const Videos = () => {
   const session = useSession(true);
+  const { data } = trpc.payment.test.useQuery();
 
   if (!session) return null;
 
