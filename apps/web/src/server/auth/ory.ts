@@ -28,7 +28,7 @@ export const getSession: GetSessionFunc = async ({
       xSessionToken: sessionToken,
     });
     return {
-      userID: data.identity.id,
+      externalId: data.identity.id,
       email: data.identity.traits.email,
     };
   } catch (e) {

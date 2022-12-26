@@ -19,10 +19,23 @@ model Post {
   updatedAt DateTime @default(now()) @updatedAt
 }
 
-model PaymentInfos {
-  id          String @id @default(uuid())
-  customerId  String @unique
-  userId      String @unique
+model UserInfo {
+  id         String @id @default(uuid())
+  email      String @unique
+  externalId String @unique
+
+  paymentInfo PaymentInfo?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model PaymentInfo {
+  id                String    @id @default(uuid())
+  customerId        String    @unique
+  subscriptionEndAt DateTime?
+  user              UserInfo  @relation(fields: [userId], references: [id])
+  userId            String    @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt

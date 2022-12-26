@@ -3,6 +3,8 @@ import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import { getSession } from "./auth/ory";
 import { Session } from "./auth/types";
+import { prisma } from "./prisma";
+import { createPaymentAccount, createUser } from "./core/user";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface CreateContextOptions {
@@ -14,7 +16,22 @@ interface CreateContextOptions {
  * This is useful for testing when we don't want to mock Next.js' request/response
  */
 export async function createContextInner(_opts: CreateContextOptions) {
-  return { session: _opts.session };
+  const externalId = _opts.session?.externalId;
+  const email = _opts.session?.email;
+  if (externalId && email) {
+    let userInfo = await prisma.userInfo.findUnique({
+      where: { externalId },
+      include: { paymentInfo: true },
+    });
+    if (!userInfo) {
+      userInfo = await createUser({ externalId, email });
+    }
+    if (!userInfo.paymentInfo) {
+      userInfo = await createPaymentAccount({ userId: userInfo.id, email });
+    }
+    return { session: _opts.session, user: userInfo };
+  }
+  return { session: null, user: null };
 }
 
 export type Context = trpc.inferAsyncReturnType<typeof createContextInner>;

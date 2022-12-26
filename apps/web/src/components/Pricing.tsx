@@ -9,7 +9,7 @@ const tiers = [
     id: "tier-free",
     name: "Free",
     href: auth.signupURL,
-    priceID: STARTER_PRICE_ID,
+    priceId: STARTER_PRICE_ID,
     priceMonthly: 0,
     description:
       "Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.",
@@ -24,7 +24,7 @@ const tiers = [
     id: "tier-starter",
     name: "Starter",
     href: auth.signupURL,
-    priceID: STARTER_PRICE_ID,
+    priceId: STARTER_PRICE_ID,
     priceMonthly: 25,
     description:
       "Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis.",
@@ -42,8 +42,8 @@ export default function Pricing() {
   const router = useRouter();
   const createCheckoutSession = trpc.payment.createSession.useMutation();
 
-  const createCheckSession = async (priceID: string) => {
-    const url = await createCheckoutSession.mutateAsync({ priceID });
+  const createCheckSession = async (priceId: string) => {
+    const url = await createCheckoutSession.mutateAsync({ priceId });
     router.push(url);
   };
 
@@ -120,7 +120,7 @@ export default function Pricing() {
                       <div className="mt-8">
                         <button
                           // href={tier.href}
-                          onClick={() => createCheckSession(tier.priceID)}
+                          onClick={() => createCheckSession(tier.priceId)}
                           className="inline-block w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold leading-5 text-white shadow-md hover:bg-indigo-700"
                           aria-describedby={tier.id}
                         >

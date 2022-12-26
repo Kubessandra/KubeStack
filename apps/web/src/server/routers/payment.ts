@@ -4,39 +4,26 @@
  */
 import { router } from "../trpc";
 import { TRPCError } from "@trpc/server";
-import Stripe from "stripe";
 import { z } from "zod";
-import { env } from "~/server/env";
 
-import { SUCCESS_URL } from "~/utils/constants";
 import { authProcedure } from "../auth/middleware";
 
-const stripe = new Stripe(env.STRIPE_SECRET, {
-  apiVersion: "2022-11-15",
-});
+import { createCheckoutSession, createCustomerPortal } from "../payment/stripe";
 
 export const paymentRouter = router({
-  test: authProcedure.query(async () => {
-    return "lol";
-  }),
   createSession: authProcedure
     .input(
       z.object({
-        priceID: z.string().max(250),
+        priceId: z.string().max(250),
       })
     )
-    .mutation(async ({ input }) => {
-      const session = await stripe.checkout.sessions.create({
-        billing_address_collection: "auto",
-        line_items: [
-          {
-            price: input.priceID,
-            quantity: 1,
-          },
-        ],
-        mode: "subscription",
-        success_url: `${env.FRONT_URL}/${SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${env.FRONT_URL}/videos`,
+    .mutation(async ({ input, ctx }) => {
+      const userId = ctx.user.id;
+      const customerId = ctx.user.paymentInfo.customerId;
+      const session = await createCheckoutSession({
+        userId: userId,
+        customerId,
+        priceId: input.priceId,
       });
 
       if (!session.url) {
@@ -47,4 +34,9 @@ export const paymentRouter = router({
       }
       return session.url;
     }),
+  createCustomerPortal: authProcedure.mutation(async ({ ctx }) => {
+    const customerId = ctx.user.paymentInfo.customerId;
+    const portalUrl = await createCustomerPortal({ customerId });
+    return portalUrl;
+  }),
 });

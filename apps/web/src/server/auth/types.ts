@@ -1,5 +1,5 @@
 export interface Session {
-  userID: string;
+  externalId: string;
   email: string;
 }
 
