@@ -1,8 +1,8 @@
-# SocialGenerator
+# KubeStack
 
 HERE we need an AMAZING LOGO
 
-# What's SocialGenerator
+# What's KubeStack
 
 An amazing SaaS plateform to generate videos from your data and social accounts.
 You can automate the generation of your top tweets or videos and post them on your social accounts every week / months.
