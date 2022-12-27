@@ -13,8 +13,8 @@ We want this community to be friendly and respectful to each other. Please follo
   look at discussions in the forum and take part in community events. More info
   on this in [Communication](#communication).
 
-- **Help with open issues.** We have a lot of open issues for Ory CLI and some
-  of them may lack necessary information, some are duplicates of older issues.
+- **Help with open issues.** Sometimes, issues lack necessary information and some
+  are duplicates of older issues.
   You can help out by guiding people through the process of filling out the
   issue template, asking for clarifying information or pointing them to existing
   issues that match their description of the problem.
@@ -31,7 +31,7 @@ We want this community to be friendly and respectful to each other. Please follo
 
 ## Communication
 
-- We use [Discord](https://discord.gg/v7sbenECgC) 
+- We use [Discord](https://discord.gg/v7sbenECgC)
 - You can also join us on [Twitter](https://twitter.com/kubessandra)
 
 ## Pull request process
@@ -70,7 +70,6 @@ git push -u fork my-feature-branch
 ```
 
 Now go to the project's GitHub Pull Request page and click "New pull request"
-
 
 ## Setup
 
