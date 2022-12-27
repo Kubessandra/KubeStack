@@ -99,6 +99,14 @@ If you enter the wrong version, or if the required node version changes, pnpm wi
 
 > :information*source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the \_pnpm* version will be used for dependencies resolution **aswell** as for scripts.
 
+### Ory CLI
+
+For authentication, the [KubeStack](https://github.com/Kubessandra/KubeStack) uses [Ory](https://www.ory.sh/docs/welcome).
+
+In order to be run locally, Ory relies on it's CLI to create a proxy tunnel to the API.
+
+Install the CLI through the [official documentation page](https://www.ory.sh/docs/getting-started/local-development).
+
 ## Development workflow
 
 To get started with the project, run `pnpm` in the root directory to install the required dependencies for each package:
