@@ -73,7 +73,31 @@ Now go to the project's GitHub Pull Request page and click "New pull request"
 
 ## Setup
 
-TODO setup with envs variable etc
+### PNPM
+
+First, you will need to have [`pnpm`](https://pnpm.io/fr/) installed on your machine.
+
+From the [installation page](https://pnpm.io/fr/installation), choose your preferred install method and run it.
+
+### NodeJS
+
+Next, you'll need to have [NodeJS](https://nodejs.org/en/) installed, with the required version. the required version is specified in the [`.npmrc`](.npmrc) root file, aswell as in every `pagakage.json` file :
+
+```json
+"engines": {
+    "node": "18.4.0"
+  },
+```
+
+Feel free to use the node-version manager of your choice (like [nvm](https://github.com/nvm-sh/nvm)), but we recommend using the integrated manager of pnpm. The [`pnpm env`](https://pnpm.io/fr/cli/env) command allows you to manage whatever node engine pnpm should use. Go into any `package.json` file and find the required node version, then enter the following command :
+
+```sh
+$ pnpm env use --global 18.4.0
+```
+
+If you enter the wrong version, or if the required node version changes, pnpm will throw errors until you make the apropriate changes.
+
+> :information*source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the \_pnpm* version will be used for dependencies resolution **aswell** as for scripts.
 
 ## Development workflow
 
