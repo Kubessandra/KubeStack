@@ -1,0 +1,21 @@
+# This workflow ensures PR titles match the Conventional Commits spec.
+# see https://www.conventionalcommits.org/en/v1.0.0/
+name: "Lint PR"
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  main:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        # Action constomization is available here :
+        # https://github.com/marketplace/actions/semantic-pull-request#configuration
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
