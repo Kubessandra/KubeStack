@@ -75,9 +75,9 @@ Now go to the project's GitHub Pull Request page and click "New pull request"
 
 ### PNPM
 
-First, you will need to have [`pnpm`](https://pnpm.io/fr/) installed on your machine.
+First, you will need to have [`pnpm`](https://pnpm.io/) installed on your machine.
 
-From the [installation page](https://pnpm.io/fr/installation), choose your preferred install method and run it.
+From the [installation page](https://pnpm.io/installation), choose your preferred install method and run it.
 
 ### NodeJS
 
