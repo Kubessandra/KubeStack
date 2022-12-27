@@ -81,7 +81,7 @@ From the [installation page](https://pnpm.io/fr/installation), choose your prefe
 
 ### NodeJS
 
-Next, you'll need to have [NodeJS](https://nodejs.org/en/) installed, with the required version. The required version is specified in the [`.npmrc`](.npmrc) root file, aswell as in every `pagakage.json` file :
+Next, you'll need to have [NodeJS](https://nodejs.org/en/) installed, with the required version. The required version is specified in the [`.npmrc`](.npmrc) root file, aswell as in every `package.json` file :
 
 ```json
 "engines": {
