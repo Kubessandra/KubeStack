@@ -81,7 +81,7 @@ From the [installation page](https://pnpm.io/fr/installation), choose your prefe
 
 ### NodeJS
 
-Next, you'll need to have [NodeJS](https://nodejs.org/en/) installed, with the required version. the required version is specified in the [`.npmrc`](.npmrc) root file, aswell as in every `pagakage.json` file :
+Next, you'll need to have [NodeJS](https://nodejs.org/en/) installed, with the required version. The required version is specified in the [`.npmrc`](.npmrc) root file, aswell as in every `pagakage.json` file :
 
 ```json
 "engines": {
@@ -97,7 +97,7 @@ $ pnpm env use --global 18.4.0
 
 If you enter the wrong version, or if the required node version changes, pnpm will throw errors until you make the apropriate changes.
 
-> :information*source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the \_pnpm* version will be used for dependencies resolution **aswell** as for scripts.
+> :information_source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the \_pnpm\* version will be used for dependencies resolution **aswell** as for scripts.
 
 ### Ory CLI
 
