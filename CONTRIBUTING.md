@@ -107,6 +107,14 @@ In order to be run locally, Ory relies on it's CLI to create a proxy tunnel to t
 
 Install the CLI through the [official documentation page](https://www.ory.sh/docs/getting-started/local-development).
 
+### Environment variables.
+
+> :construction: TODO
+
+> :construction: Probably includes Ory stuff
+
+> :construction: @Kubessandra please fill this up, I could have played the guessing game or watched Twitch replays, but I'm layzy. :zzz: I'll gladly keep on working on this once I can get the project up & running
+
 ## Development workflow
 
 To get started with the project, run `pnpm` in the root directory to install the required dependencies for each package:
