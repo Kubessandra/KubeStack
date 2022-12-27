@@ -97,7 +97,7 @@ $ pnpm env use --global 18.4.0
 
 If you enter the wrong version, or if the required node version changes, pnpm will throw errors until you make the apropriate changes.
 
-> :information_source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the \_pnpm\* version will be used for dependencies resolution **aswell** as for scripts.
+> :information_source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the _pnpm_ version will be used for dependencies resolution **aswell** as for scripts.
 
 ### Ory CLI
 
