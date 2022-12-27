@@ -74,7 +74,12 @@ Now go to the project's GitHub Pull Request page and click "New pull request"
 
 ## Setup
 
-TODO setup with envs variable etc
+You need to replace every `.env.example` that you can find by a `.env` with your environment variables.
+
+You can find a `.env.example` in:
+
+- `apps/web`
+- `package/database`
 
 ## Development workflow
 
