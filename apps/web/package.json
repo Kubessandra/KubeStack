@@ -2,6 +2,9 @@
   "name": "@kubessandra/web",
   "version": "1.0.0",
   "private": false,
+  "engines": {
+    "node": "18.4.0"
+  },
   "scripts": {
     "dev": "run-p next:dev ory:proxy",
     "next:dev": "next dev",
