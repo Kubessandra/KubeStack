@@ -97,7 +97,7 @@ $ pnpm env use --global 18.4.0
 
 If you enter the wrong version, or if the required node version changes, pnpm will throw errors until you make the apropriate changes.
 
-> :information_source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the _pnpm_ version will be used for dependencies resolution **aswell** as for scripts.
+> :information*source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the \_pnpm* version will be used for dependencies resolution **aswell** as for scripts.
 
 ### Ory CLI
 
@@ -109,11 +109,12 @@ Install the CLI through the [official documentation page](https://www.ory.sh/doc
 
 ### Environment variables.
 
-> :construction: TODO
+You need to replace every `.env.example` that you can find by a `.env` with your environment variables.
 
-> :construction: Probably includes Ory stuff
+You can find a `.env.example` in:
 
-> :construction: @Kubessandra please fill this up, I could have played the guessing game or watched Twitch replays, but I'm layzy. :zzz: I'll gladly keep on working on this once I can get the project up & running
+- `apps/web`
+- `package/database`
 
 ## Development workflow
 
