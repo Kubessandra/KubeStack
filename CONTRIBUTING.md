@@ -107,6 +107,14 @@ In order to be run locally, Ory relies on it's CLI to create a proxy tunnel to t
 
 Install the CLI through the [official documentation page](https://www.ory.sh/docs/getting-started/local-development).
 
+Once installed, you will need an account and a project. To do so, follow the [official guide](https://www.ory.sh/docs/guides/cli/cli-basics#create-ory-network-account-and-project).
+You should end up using `ory auth` to create / log-in to an account, and `ory create project` to create a new
+project if needed. You then should be shown some metadata about your project, in particular the project's `SLUG`, which should be inserted as the `ORY_PROJECT_SLUG` env variable.
+
+If any of these informations / steps is missing, the app will fail to start.
+
+> :information_source: Authentication and project-creation can also be done using the console at [console.ory.sh](https://console.ory.sh/).
+
 ### Environment variables.
 
 You need to replace every `.env.example` that you can find by a `.env` with your environment variables.
