@@ -1,11 +1,11 @@
 # KubeStack
-
-HERE we need an AMAZING LOGO
+<p align="center">
+  <img width="500" height="500" src="https://user-images.githubusercontent.com/38230596/209870404-3f75b3c8-1704-4a1b-8810-ebd809036e54.png">
+</p>
 
 # What's KubeStack
 
-An amazing SaaS plateform to generate videos from your data and social accounts.
-You can automate the generation of your top tweets or videos and post them on your social accounts every week / months.
+An amazing SaaS plateform boilerplate.
 
 ## Run it in local
 
