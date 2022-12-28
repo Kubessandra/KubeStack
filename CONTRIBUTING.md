@@ -13,8 +13,8 @@ We want this community to be friendly and respectful to each other. Please follo
   look at discussions in the forum and take part in community events. More info
   on this in [Communication](#communication).
 
-- **Help with open issues.** We have a lot of open issues for Ory CLI and some
-  of them may lack necessary information, some are duplicates of older issues.
+- **Help with open issues.** Sometimes, issues lack necessary information and some
+  are duplicates of older issues.
   You can help out by guiding people through the process of filling out the
   issue template, asking for clarifying information or pointing them to existing
   issues that match their description of the problem.
@@ -31,7 +31,7 @@ We want this community to be friendly and respectful to each other. Please follo
 
 ## Communication
 
-- We use [Discord](https://discord.gg/v7sbenECgC) 
+- We use [Discord](https://discord.gg/v7sbenECgC)
 - You can also join us on [Twitter](https://twitter.com/kubessandra)
 
 ## Pull request process
@@ -71,8 +71,51 @@ git push -u fork my-feature-branch
 
 Now go to the project's GitHub Pull Request page and click "New pull request"
 
-
 ## Setup
+
+### PNPM
+
+First, you will need to have [`pnpm`](https://pnpm.io/) installed on your machine.
+
+From the [installation page](https://pnpm.io/installation), choose your preferred install method and run it.
+
+### NodeJS
+
+Next, you'll need to have [NodeJS](https://nodejs.org/en/) installed, with the required version. The required version is specified in the [`.npmrc`](.npmrc) root file, aswell as in every `package.json` file :
+
+```json
+"engines": {
+    "node": "18.4.0"
+  },
+```
+
+Feel free to use the node-version manager of your choice (like [nvm](https://github.com/nvm-sh/nvm)), but we recommend using the integrated manager of pnpm. The [`pnpm env`](https://pnpm.io/fr/cli/env) command allows you to manage whatever node engine pnpm should use. Go into any `package.json` file and find the required node version, then enter the following command :
+
+```sh
+$ pnpm env use --global 18.4.0
+```
+
+If you enter the wrong version, or if the required node version changes, pnpm will throw errors until you make the apropriate changes.
+
+> :information_source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the _pnpm_ version will be used for dependencies resolution **aswell** as for scripts.
+
+### Ory CLI
+
+For authentication, the [KubeStack](https://github.com/Kubessandra/KubeStack) uses [Ory](https://www.ory.sh/docs/welcome).
+
+In order to be run locally, Ory relies on it's CLI to create a proxy tunnel to the API.
+
+Install the CLI through the [official documentation page](https://www.ory.sh/docs/getting-started/local-development).
+
+Once installed, you will need an account and a project. To do so, follow the [official guide](https://www.ory.sh/docs/guides/cli/cli-basics#create-ory-network-account-and-project).
+You should end up using `ory auth` to create / log-in to an account, and `ory create project` to create a new
+project if needed. You then should be shown some metadata about your project, in particular the project's `SLUG`, which should be inserted as the `ORY_PROJECT_SLUG` env variable.
+
+If any of these informations / steps is missing, the app will fail to start.
+
+> :information_source: Authentication and project-creation can also be done using the console at [console.ory.sh](https://console.ory.sh/).
+
+### Environment variables.
 
 You need to replace every `.env.example` that you can find by a `.env` with your environment variables.
 

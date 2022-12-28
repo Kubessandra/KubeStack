@@ -4,6 +4,9 @@
   "description": "generate social videos ",
   "main": "./index.ts",
   "types": "./index.ts",
+  "engines": {
+    "node": "18.4.0"
+  },
   "dependencies": {
     "pnpm": "^7.19.0"
   },
