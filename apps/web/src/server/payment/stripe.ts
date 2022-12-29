@@ -1,5 +1,6 @@
 import Stripe from "stripe";
-import { SUCCESS_URL, VIDEO_URL } from "~/utils/constants";
+import { SUCCESS_URL } from "~/utils/constants";
+import securedRoutes from "~/utils/routing";
 import { env } from "../env";
 
 export const stripe = new Stripe(env.STRIPE_SECRET, {
@@ -11,6 +12,9 @@ interface CreateCheckoutParams {
   priceId: string;
   customerId: string;
 }
+
+export const isHavingActiveSubscription = (subEndDate?: Date | null): boolean =>
+  !!(subEndDate && subEndDate?.getTime() > Date.now());
 
 export const createCheckoutSession = async ({
   priceId,
@@ -31,7 +35,7 @@ export const createCheckoutSession = async ({
     },
     mode: "subscription",
     success_url: `${env.FRONT_URL}/${SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${env.FRONT_URL}/${VIDEO_URL}`,
+    cancel_url: `${env.FRONT_URL}/${securedRoutes.DASHBOARD.path}`,
   });
   return session;
 };
@@ -45,7 +49,7 @@ interface CreateCustomerPortalParams {
 export const createCustomerPortal = async ({
   customerId,
 }: CreateCustomerPortalParams) => {
-  const returnUrl = `${env.FRONT_URL}/${VIDEO_URL}`;
+  const returnUrl = `${env.FRONT_URL}/${securedRoutes.DASHBOARD.path}`;
   const portalSession = await stripe.billingPortal.sessions.create({
     customer: customerId,
     return_url: returnUrl,

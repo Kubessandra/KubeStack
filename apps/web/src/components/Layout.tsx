@@ -3,32 +3,22 @@ import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   Bars3BottomLeftIcon,
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-
-const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
-];
-const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
-];
+import { Logo } from "./Logo";
+import Link from "next/link";
+import { getSidebarRoutes, IRoute } from "~/utils/routing";
+import { useRouter } from "next/router";
+import auth from "~/utils/auth";
+import { useSession } from "~/hooks/useSession";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
+}
+
+interface NavigationObject extends IRoute {
+  current: boolean;
 }
 
 interface LayoutProps {
@@ -37,18 +27,24 @@ interface LayoutProps {
 
 export default function Layout(props: LayoutProps) {
   const { children } = props;
+  const router = useRouter();
+  const session = useSession(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  if (!session) return null;
+
+  const userNavigation = [
+    { name: "Settings", href: "/settings" },
+    { name: "Sign out", href: auth.logoutURL },
+  ];
+
+  const navigation: NavigationObject[] = getSidebarRoutes().map((route) => ({
+    ...route,
+    current: route.path === router.pathname,
+  }));
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
@@ -102,19 +98,18 @@ export default function Layout(props: LayoutProps) {
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex flex-shrink-0 items-center px-4">
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                      alt="Your Company"
-                    />
-                  </div>
+                  <Link
+                    href="/"
+                    className="flex flex-shrink-0 items-center px-4"
+                  >
+                    <Logo size={32} />
+                  </Link>
                   <div className="mt-5 h-0 flex-1 overflow-y-auto">
                     <nav className="space-y-1 px-2">
                       {navigation.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          href={item.path}
                           className={classNames(
                             item.current
                               ? "bg-gray-900 text-white"
@@ -122,17 +117,19 @@ export default function Layout(props: LayoutProps) {
                             "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                           )}
                         >
-                          <item.icon
-                            className={classNames(
-                              item.current
-                                ? "text-gray-300"
-                                : "text-gray-400 group-hover:text-gray-300",
-                              "mr-4 flex-shrink-0 h-6 w-6"
-                            )}
-                            aria-hidden="true"
-                          />
+                          {item.icon && (
+                            <item.icon
+                              className={classNames(
+                                item.current
+                                  ? "text-gray-300"
+                                  : "text-gray-400 group-hover:text-gray-300",
+                                "mr-4 flex-shrink-0 h-6 w-6"
+                              )}
+                              aria-hidden="true"
+                            />
+                          )}
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </nav>
                   </div>
@@ -149,19 +146,18 @@ export default function Layout(props: LayoutProps) {
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col bg-gray-800">
-            <div className="flex h-16 flex-shrink-0 items-center bg-gray-900 px-4">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
-              />
-            </div>
+            <Link
+              href="/"
+              className="flex h-16 flex-shrink-0 items-center bg-gray-900 px-4"
+            >
+              <Logo size={32} />
+            </Link>
             <div className="flex flex-1 flex-col overflow-y-auto">
               <nav className="flex-1 space-y-1 px-2 py-4">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    href={item.path}
                     className={classNames(
                       item.current
                         ? "bg-gray-900 text-white"
@@ -169,17 +165,19 @@ export default function Layout(props: LayoutProps) {
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
                   >
-                    <item.icon
-                      className={classNames(
-                        item.current
-                          ? "text-gray-300"
-                          : "text-gray-400 group-hover:text-gray-300",
-                        "mr-3 flex-shrink-0 h-6 w-6"
-                      )}
-                      aria-hidden="true"
-                    />
+                    {item.icon && (
+                      <item.icon
+                        className={classNames(
+                          item.current
+                            ? "text-gray-300"
+                            : "text-gray-400 group-hover:text-gray-300",
+                          "mr-3 flex-shrink-0 h-6 w-6"
+                        )}
+                        aria-hidden="true"
+                      />
+                    )}
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -252,7 +250,7 @@ export default function Layout(props: LayoutProps) {
                       {userNavigation.map((item) => (
                         <Menu.Item key={item.name}>
                           {({ active }) => (
-                            <a
+                            <Link
                               href={item.href}
                               className={classNames(
                                 active ? "bg-gray-100" : "",
@@ -260,7 +258,7 @@ export default function Layout(props: LayoutProps) {
                               )}
                             >
                               {item.name}
-                            </a>
+                            </Link>
                           )}
                         </Menu.Item>
                       ))}

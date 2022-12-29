@@ -1,7 +1,8 @@
 import { ReactElement } from "react";
-import { TWITTER_LINK, VIDEO_URL } from "~/utils/constants";
+import { TWITTER_LINK } from "~/utils/constants";
 import Layout from "~/components/Layout";
 import Link from "next/link";
+import securedRoutes from "~/utils/routing";
 
 export default function SuccessPage() {
   return (
@@ -60,7 +61,7 @@ export default function SuccessPage() {
                 </p>
                 <div className="mt-8 flex gap-x-4 sm:justify-center">
                   <Link
-                    href={VIDEO_URL}
+                    href={securedRoutes.DASHBOARD.path}
                     className="inline-block rounded-lg bg-green-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-green-600 hover:bg-green-700 hover:ring-green-700"
                   >
                     Get started

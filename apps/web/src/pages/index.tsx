@@ -17,7 +17,8 @@ import {
 import auth from "~/utils/auth";
 import { useSession } from "~/hooks/useSession";
 import Link from "next/link";
-import { VIDEO_URL } from "~/utils/constants";
+import { Logo } from "~/components/Logo";
+import securedRoutes from "~/utils/routing";
 
 const navigation = [
   { name: "Product", href: "#" },
@@ -226,14 +227,9 @@ export default function Landing() {
             >
               <div className="flex flex-1 items-center">
                 <div className="flex w-full items-center justify-between md:w-auto">
-                  <a href="#">
-                    <span className="sr-only">Your Company</span>
-                    <img
-                      className="h-8 w-auto sm:h-10"
-                      src="https://tailwindui.com/img/logos/mark.svg?from-color=teal&from-shade=200&to-color=cyan&to-shade=400&toShade=400"
-                      alt=""
-                    />
-                  </a>
+                  <Link href="/">
+                    <Logo size={86} />
+                  </Link>
                   <div className="-mr-2 flex items-center md:hidden">
                     <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
                       <span className="sr-only">Open main menu</span>
@@ -270,7 +266,7 @@ export default function Landing() {
                 </div>
               ) : (
                 <Link
-                  href={VIDEO_URL}
+                  href={securedRoutes.DASHBOARD.path}
                   className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
                 >
                   Go To Videos

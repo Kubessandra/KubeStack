@@ -7,7 +7,7 @@ import { useSession } from "~/hooks/useSession";
 import auth from "~/utils/auth";
 import { trpc } from "~/utils/trpc";
 
-const Videos = () => {
+const Dashboard = () => {
   const router = useRouter();
   const customerPortalMutation =
     trpc.payment.createCustomerPortal.useMutation();
@@ -41,6 +41,6 @@ const Videos = () => {
   );
 };
 
-Videos.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+Dashboard.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
 
-export default Videos;
+export default Dashboard;
