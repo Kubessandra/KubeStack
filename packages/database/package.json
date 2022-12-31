@@ -1,8 +1,5 @@
 {
   "name": "@kubessandra/database",
-  "engines": {
-    "node": "18.4.0"
-  },
   "scripts": {
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",

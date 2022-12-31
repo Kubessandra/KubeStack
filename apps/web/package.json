@@ -2,9 +2,6 @@
   "name": "@kubessandra/web",
   "version": "1.0.0",
   "private": false,
-  "engines": {
-    "node": "18.4.0"
-  },
   "scripts": {
     "dev": "run-p next:dev ory:proxy",
     "stripe:dev": "stripe listen --forward-to localhost:3000/api/webhook/stripe",

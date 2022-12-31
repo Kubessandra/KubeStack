@@ -83,12 +83,6 @@ From the [installation page](https://pnpm.io/installation), choose your preferre
 
 Next, you'll need to have [NodeJS](https://nodejs.org/en/) installed, with the required version. The required version is specified in the [`.npmrc`](.npmrc) root file, aswell as in every `package.json` file :
 
-```json
-"engines": {
-    "node": "18.4.0"
-  },
-```
-
 Feel free to use the node-version manager of your choice (like [nvm](https://github.com/nvm-sh/nvm)), but we recommend using the integrated manager of pnpm. The [`pnpm env`](https://pnpm.io/fr/cli/env) command allows you to manage whatever node engine pnpm should use. Go into any `package.json` file and find the required node version, then enter the following command :
 
 ```sh
