@@ -3,6 +3,11 @@
   <img width="500" height="500" src="https://user-images.githubusercontent.com/38230596/209870404-3f75b3c8-1704-4a1b-8810-ebd809036e54.png">
 </p>
 
+<p align="center">
+  <a href="https://twitch.tv/kubessandra" target="_blank"><img src="https://img.shields.io/twitch/status/kubessandra?style=social" /></a>
+  <a href="https://twitter.com/kubessandra" target="_blank"><img src="https://img.shields.io/twitter/follow/kubessandra?style=social" /></a>
+</p>
+
 # What's KubeStack
 
 An amazing SaaS plateform boilerplate.
