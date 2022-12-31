@@ -6,7 +6,7 @@
       "outputs": [".next/**"]
     },
     "dev": {
-      "dependsOn": ["^db:generate"],
+      "dependsOn": ["^db:dev", "^db:generate"],
       "cache": false
     },
     "test": {
@@ -23,6 +23,9 @@
     },
     "lint-fix": {
       "outputs": []
+    },
+    "db:dev": {
+      "cache": false
     },
     "db:generate": {
       "cache": false

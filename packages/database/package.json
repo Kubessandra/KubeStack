@@ -1,6 +1,7 @@
 {
   "name": "@kubessandra/database",
   "scripts": {
+    "db:dev": "docker compose up --build -d",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio"
