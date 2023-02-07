@@ -25,7 +25,7 @@ pnpm dev
 - [Turborepo](https://turbo.build)
 - [Trpc](https://trpc.io)
 - [Prisma](https://prisma.io)
-- [Ory.sh](https://ory.sh)
+- [Clerk](https://clerk.dev)
 - [Stripe](https://stripe.com)
 - [NextJS](https://nextjs.org)
 - [Typescript](https://typescriptlang.org)
