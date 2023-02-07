@@ -11,7 +11,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>{children}</main>
+      <main className="min-h-full h-full flex flex-col">{children}</main>
     </>
   );
 };

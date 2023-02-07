@@ -5,7 +5,7 @@ We want this community to be friendly and respectful to each other. Please follo
 ## How can I contribute?
 
 - **Give us a star.** It may not seem like much, but it really makes a
-  difference. This is something that everyone can do to help out Ory CLI. Github
+  difference. This is something that everyone can do to help out. Github
   stars help the project gain visibility and stand out.
 
 - **Join the community.** Sometimes helping people can be as easy as listening
@@ -92,22 +92,6 @@ $ pnpm env use --global 18.4.0
 If you enter the wrong version, or if the required node version changes, pnpm will throw errors until you make the apropriate changes.
 
 > :information_source: Using the `pnpm env` command, pnpm will resolve a separate node instance from the one you installed on your system. Note that the _pnpm_ version will be used for dependencies resolution **aswell** as for scripts.
-
-### Ory CLI
-
-For authentication, the [KubeStack](https://github.com/Kubessandra/KubeStack) uses [Ory](https://www.ory.sh/docs/welcome).
-
-In order to be run locally, Ory relies on it's CLI to create a proxy tunnel to the API.
-
-Install the CLI through the [official documentation page](https://www.ory.sh/docs/getting-started/local-development).
-
-Once installed, you will need an account and a project. To do so, follow the [official guide](https://www.ory.sh/docs/guides/cli/cli-basics#create-ory-network-account-and-project).
-You should end up using `ory auth` to create / log-in to an account, and `ory create project` to create a new
-project if needed. You then should be shown some metadata about your project, in particular the project's `SLUG`, which should be inserted as the `ORY_PROJECT_SLUG` env variable.
-
-If any of these informations / steps is missing, the app will fail to start.
-
-> :information_source: Authentication and project-creation can also be done using the console at [console.ory.sh](https://console.ory.sh/).
 
 ### Environment variables.
 

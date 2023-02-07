@@ -25,5 +25,6 @@ module.exports = getConfig({
    */
   publicRuntimeConfig: {
     NODE_ENV: env.NODE_ENV,
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
   },
 });

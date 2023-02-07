@@ -31,6 +31,18 @@ const securedRoutes = {
   },
 } as const;
 
+export const publicRoutes = {
+  HOME: {
+    path: "/",
+  },
+  SIGN_IN: {
+    path: "/sign-in",
+  },
+  SIGN_UP: {
+    path: "/sign-up",
+  },
+} as const;
+
 export const getSecuredRoutes = (): {
   [key in keyof SecuredRoutes]: IRoute;
 } => {

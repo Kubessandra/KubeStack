@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { NextPage } from "next";
 import type { AppType, AppProps } from "next/app";
 import type { ReactElement, ReactNode } from "react";
@@ -21,7 +22,11 @@ const MyApp = (({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout =
     Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>);
 
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <ClerkProvider {...pageProps}>
+      {getLayout(<Component {...pageProps} />)}
+    </ClerkProvider>
+  );
 }) as AppType;
 
 export default trpc.withTRPC(MyApp);

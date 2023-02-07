@@ -16,6 +16,8 @@ const envSchema = z.object({
   STRIPE_WEBHOOK_SECRET: z.string(),
   FRONT_URL: z.string(),
   NODE_ENV: z.enum(["development", "test", "production"]),
+  CLERK_SECRET_KEY: z.string(),
+  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
 });
 
 const env = envSchema.safeParse(process.env);
