@@ -14,11 +14,10 @@ import {
   ArrowTopRightOnSquareIcon,
   ChevronRightIcon,
 } from "@heroicons/react/20/solid";
-import auth from "~/utils/auth";
-import { useSession } from "~/hooks/useSession";
 import Link from "next/link";
 import { Logo } from "~/components/Logo";
-import securedRoutes from "~/utils/routing";
+import securedRoutes, { publicRoutes } from "~/utils/routing";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 const navigation = [
   { name: "Product", href: "#" },
@@ -214,8 +213,6 @@ const footerNavigation = {
 };
 
 export default function Landing() {
-  const session = useSession(false);
-
   return (
     <div className="bg-white">
       <div className="relative overflow-hidden">
@@ -249,29 +246,30 @@ export default function Landing() {
                   ))}
                 </div>
               </div>
-              {!session ? (
+              <SignedOut>
                 <div className="hidden md:flex md:items-center md:space-x-6">
                   <Link
-                    href={auth.loginURL}
+                    href={publicRoutes.SIGN_IN.path}
                     className="text-base font-medium text-white hover:text-gray-300"
                   >
                     Log in
                   </Link>
                   <Link
-                    href={auth.signupURL}
+                    href={publicRoutes.SIGN_UP.path}
                     className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
                   >
                     Start free trial
                   </Link>
                 </div>
-              ) : (
+              </SignedOut>
+              <SignedIn>
                 <Link
                   href={securedRoutes.DASHBOARD.path}
                   className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
                 >
-                  Go To Videos
+                  Go To Dashboard
                 </Link>
-              )}
+              </SignedIn>
             </nav>
           </div>
 
@@ -318,7 +316,7 @@ export default function Landing() {
                   </div>
                   <div className="mt-6 px-5">
                     <a
-                      href={auth.signupURL}
+                      href={publicRoutes.SIGN_UP.path}
                       className="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 text-center font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700"
                     >
                       Start free trial
@@ -328,7 +326,7 @@ export default function Landing() {
                     <p className="text-center text-base font-medium text-gray-500">
                       Existing customer?{" "}
                       <a
-                        href={auth.loginURL}
+                        href={publicRoutes.SIGN_IN.path}
                         className="text-gray-900 hover:underline"
                       >
                         Login
